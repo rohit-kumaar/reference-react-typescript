@@ -33,12 +33,16 @@ function App() {
       </Oscar>
       <Greet name="Rohit" isLoggedIn={true} /> */}
 
-      <Button
+      {/* <Button
         handleClick={(event, id) => {
           console.log("Button clicked", event, id);
         }}
       />
+      <Input value="" handleChange={(event) => console.log(event)} /> */}
+
       <Input value="" handleChange={(event) => console.log(event)} />
+      <Person name={personName} />
+      <PersonList names={nameList} />
     </div>
   );
 }
