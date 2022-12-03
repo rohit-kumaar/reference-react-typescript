@@ -1,55 +1,40 @@
-import "./App.css";
-import Button from "./components/Button";
-import Greet from "./components/Greet";
-import Heading from "./components/Heading";
-import Input from "./components/Input";
-import Oscar from "./components/Oscar";
-import Person from "./components/Person";
-import PersonList from "./components/PersonList";
-import LoggedIn from "./components/state/LoggedIn";
-import { User } from "./components/state/User";
-import Status from "./components/Status";
+import { useState } from "react";
+import Product from "./components/Product";
+
+export interface IProduct {
+  id: number;
+  name: string;
+  price: number;
+}
 
 function App() {
-  const personName = {
-    first: "Bruce",
-    last: "Wayne",
-  };
+  const [products, setProducts] = useState<IProduct[]>([
+    {
+      id: 1,
+      name: "Iphone",
+      price: 5000,
+    },
+    {
+      id: 2,
+      name: "MacBook",
+      price: 10000,
+    },
+  ]);
 
-  const nameList = [
-    { first: "Bruce", last: "Wayne" },
-    { first: "Clark", last: "Kent" },
-    { first: "Princess", last: "Diana" },
-  ];
+  function handleAddToCart(id: number) {
+    console.log("Clicked", id);
+  }
 
   return (
-    <div className="App">
-      {/* <Greet name="Rohit" messageCount={10} isLoggedIn={false} />
-      <Person name={personName} />
-      <PersonList names={nameList} /> */}
-
-      {/* <Status status="loading" />
-      <Heading>Placeholder text</Heading>
-      <Oscar>
-        <Heading>Oscar goes to Leonardo Dicaprio!</Heading>
-      </Oscar>
-      <Greet name="Rohit" isLoggedIn={true} /> */}
-
-      {/* <Button
-        handleClick={(event, id) => {
-          console.log("Button clicked", event, id);
-        }}
-      />
-      <Input value="" handleChange={(event) => console.log(event)} /> */}
-
-      {/* <Input value="" handleChange={(event) => console.log(event)} />
-      <Person name={personName} />
-      <PersonList names={nameList} /> */}
-
-      {/* <LoggedIn /> */}
-
-      <User />
-    </div>
+    <>
+      {products.map((product) => (
+        <Product
+          product={product}
+          key={product.id}
+          handleAddToCartClick={handleAddToCart}
+        />
+      ))}
+    </>
   );
 }
 
